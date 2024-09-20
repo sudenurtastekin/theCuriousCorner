@@ -34,7 +34,7 @@ export default function Sidebar() {
       <div className="widget"></div>
 
       <div className="widget">
-        <h4>Son Eklenen Postlar</h4>
+        <h4>Latest Posts</h4>
         <ul>
           {posts.map((post) => (
             <li key={post.id}>

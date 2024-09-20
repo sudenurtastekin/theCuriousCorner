@@ -82,7 +82,7 @@ export default function PostDetail() {
         <div>
           <p>
             <a href="#" onClick={handleClick} className="back-btn">
-              &larr; Bloga Dön
+              &larr; Back to Blog Page
             </a>
           </p>
           <h1>{data.title}</h1>
