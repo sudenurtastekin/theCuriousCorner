@@ -66,11 +66,28 @@ export default function PostDetail() {
     }
   };
 
+  const handleLikeDislike = async (commentId, type) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/posts/${commentId}?${type}=true`, {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json",
+        }
+      });
+      if (response.ok) {
+        setRefresh(!refresh); // Refresh the data to reflect the updated likes/dislikes
+      }
+    } catch (e) {
+      setError("Bir hata oluştu.");
+    }
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
-    setPostId(null); 
+    setPostId(null); // setPostId null yapılarak blog sayfasına geri dönüş yapılır
     setComments([]);
   };
+
 
   return (
     <div className="post-details">
@@ -111,8 +128,8 @@ export default function PostDetail() {
             {data.comments?.reverse().map((comment) => (
               <div key={comment.id} className="comment">
                 <p>{comment.content}</p>
-                <button>Like {comment.likes}</button>
-                <button>Dislike {comment.dislikes}</button>
+                <button>👍Like {comment.likes}</button>
+                <button>👎Dislike {comment.dislikes}</button>
               </div>
             ))}
           </div>
